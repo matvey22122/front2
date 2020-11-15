@@ -21,8 +21,7 @@ const BackgroundImage = styled.div`
   }
   
   @media(max-width: 1500px) {
-    width: 0;
-    height: 0;
+    display: none;
   }
 `
 
@@ -31,17 +30,17 @@ const LoginBlock = styled.div`
   align-items: start;
   flex-direction: column;
   margin-top: 12.7vh;
-  margin-left: 17.6vw;
+  margin-left: 17.6vw; //TODO: че за
   width: 16vw;
   
   @media(max-width: 1500px) {
     align-items: center;
-    margin: 9vh auto;
+    margin: 8vh auto;
     width: 81.8vw;
   }
 `
 
-export const Login = () => {
+export const LoginPage = () => {
   return (
     <Fragment>
       <LoginBlock>

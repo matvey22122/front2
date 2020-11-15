@@ -1,5 +1,7 @@
-import React from 'react'
+import React, {useContext} from 'react'
 import styled from 'styled-components'
+import {useHistory} from 'react-router-dom'
+import {ApiContext} from "../context/ApiContext";
 
 const Form = styled.form`
   margin-top: 7.4vh;
@@ -34,8 +36,6 @@ const Input = styled.input`
   
   @media(max-height: 900px) {
     height: 7.5vh;
-    
-    font-size: 3.7vw;
   }
 `
 
@@ -44,13 +44,7 @@ const Label = styled.label`
   font-size: 21px;
   font-style: normal;
   font-weight: 700;
-  
-  display: inline-block;
   margin-top: ${props => !props.first && "34px"};
-  
-  @media(max-height: 900px) {
-      font-size: 5.6vw;
-  }
 `
 
 const SubmitButton = styled.input`
@@ -76,21 +70,28 @@ const SubmitButton = styled.input`
     position: absolute;
     bottom: 0;
     margin-bottom: 34px;
-    
-    font-size: 4.8vw;
   }
 `
 
-export const LoginForm = () => (
-  <Form>
-    <Label first htmlFor={"email"}>
-      Email
-    </Label>
-    <Input id={"email"} type="text" placeholder={"Enter email..."}/>
-    <Label htmlFor={"password"}>
-      Password
-    </Label>
-    <Input id={"password"} type="text" placeholder={"Enter password..."}/>
-    <SubmitButton type="submit" value={"Login"} />
-  </Form>
-)
+export const LoginForm = () => {
+  const {getTasks} = useContext(ApiContext)
+
+  const history = useHistory()
+  const goToTasks = () => {
+    getTasks()
+    history.push("/tasks")
+  }
+  return (
+    <Form>
+      <Label first htmlFor={"email"}>
+        Email
+      </Label>
+      <Input id={"email"} type="text" placeholder={"Enter email..."}/>
+      <Label htmlFor={"password"}>
+        Password
+      </Label>
+      <Input id={"password"} type="password" placeholder={"Enter password..."}/>
+      <SubmitButton type="submit" value={"Login"} onClick={() => goToTasks()}/>
+    </Form>
+  )
+}

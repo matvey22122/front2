@@ -7,19 +7,22 @@ import {
 
 import './assets/Font.sass';
 
-import {Login} from "./pages/Login";
-import {Tasks} from "./pages/Tasks";
-import {NewTask} from "./pages/NewTask";
+import {LoginPage} from "./pages/LoginPage";
+import {TasksPage} from "./pages/TasksPage";
+import {NewTaskPage} from "./pages/NewTaskPage";
+import {ApiState} from "./context/ApiState";
 
 function App() {
   return (
-    <Router>
-      <Switch>
-        <Route path={'/'} exact component={Login}/>
-        <Route path={'/tasks'} component={Tasks}/>
-        <Route path={'/new_task'} component={NewTask}/>
-      </Switch>
-    </Router>
+    <ApiState>
+      <Router>
+        <Switch>
+          <Route path={'/'} exact component={LoginPage}/>
+          <Route path={'/tasks'} component={TasksPage}/>
+          <Route path={'/new_task'} component={NewTaskPage}/>
+        </Switch>
+      </Router>
+    </ApiState>
   );
 }
 

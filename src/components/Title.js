@@ -7,11 +7,6 @@ const TitleSpan = styled.div`
   font-weight: bold;
   font-size: 48px;
   line-height: 56px;
-  
-  @media(max-height: 900px) {
-    font-size: 12.8vw;
-    line-height: 7vh;
-  }
 `
 
 export const Title = ({title}) => (

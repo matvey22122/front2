@@ -2,6 +2,15 @@ import React, {useContext} from 'react'
 import styled from 'styled-components'
 import {useHistory} from 'react-router-dom'
 import {ApiContext} from "../context/ApiContext";
+import {adaptiveHeightMobile} from "../mixin";
+
+const adaptiveWidthWeb = (min, full) => {
+  return `calc(${min}px + ${full - min} * ((100vw - 1100px) / (1920 - 1100)))`
+}
+
+const adaptiveHeightWeb = (min, full) => {
+  return `calc(${min}px + ${full - min} * ((100vh - 900px) / (1080 - 900)))`
+}
 
 const Form = styled.form`
   margin-top: 7.4vh;
@@ -9,63 +18,82 @@ const Form = styled.form`
   display: flex;
   flex-direction: column;
 
-  @media(max-width: 1500px) {
+  @media(max-width: 1100px) {
     margin-top: 13vh;
   }
 `
 
 const Input = styled.input`
-  height: 61px;
-  width: 81vw;
   max-width: 400px;
+  max-height: 70px;
   
   background: #FFFFFF;
   box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.08);
-  border-radius: 10px;
   border: 0;
-  
   font-family: Roboto,serif;
-  font-size: 14px;
   font-style: normal;
   font-weight: 700;
   
   box-sizing: border-box;
   padding: 0 20px 0 20px;
   
-  margin-top: 29px;
+  @media(min-width: 1100px) {
+    margin-top: ${adaptiveHeightWeb(20, 29)};
+    width: ${adaptiveWidthWeb(170, 306)};
+    height: ${adaptiveWidthWeb(34, 61)};
+    font-size: ${adaptiveWidthWeb(11, 14)};
+    border-radius: ${adaptiveWidthWeb(7, 10)};
+  }
   
-  @media(max-height: 900px) {
-    height: 7.5vh;
+  @media(max-width: 1100px) {
+    margin-top: ${adaptiveHeightMobile(20, 29)};
+    width: ${adaptiveHeightMobile(210, 307)};
+    height: ${adaptiveHeightMobile(34, 61)};
+    font-size: ${adaptiveHeightMobile(11, 14)};
+    border-radius: ${adaptiveHeightMobile(7, 10)};
   }
 `
 
 const Label = styled.label` 
   font-family: Roboto,serif;
-  font-size: 21px;
   font-style: normal;
   font-weight: 700;
   margin-top: ${props => !props.first && "34px"};
+  
+  @media(min-width: 1100px) {
+    font-size: ${adaptiveWidthWeb(15, 21)};
+  }
+  
+  @media(max-width: 1100px) {
+    font-size: ${adaptiveHeightMobile(15, 21)};
+  }
 `
 
 const SubmitButton = styled.input`
-  height: 54px;
-  width: 81vw;
   max-width: 400px;
-  
-  margin-top: 122px;
-  
+  max-height: 70px;
+
   background: #FFE3D3;
   box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.08);
-  border-radius: 10px;
   border: 0;
-  
   font-family: Roboto,serif;
-  font-size: 18px;
   font-style: normal;
   font-weight: 900;
   
-  @media(max-height: 900px) {
-    height: 7.5vh;
+  @media(min-width: 1100px) {
+    margin-top: ${adaptiveHeightWeb(80, 122)};
+    width: ${adaptiveWidthWeb(170, 306)};
+    height: ${adaptiveWidthWeb(35, 54)};
+    font-size: ${adaptiveWidthWeb(13, 18)};
+    border-radius: ${adaptiveWidthWeb(7, 10)};
+  }
+  
+  @media(max-width: 1100px) {
+    margin-top: ${adaptiveHeightMobile(80, 122)};
+    width: ${adaptiveHeightMobile(210, 306)};
+    height: ${adaptiveHeightMobile(35, 54)};
+    font-size: ${adaptiveHeightMobile(13, 18)};
+    border-radius: ${adaptiveHeightMobile(7, 10)};
     
     position: absolute;
     bottom: 0;
@@ -81,6 +109,7 @@ export const LoginForm = () => {
     getTasks()
     history.push("/tasks")
   }
+
   return (
     <Form>
       <Label first htmlFor={"email"}>

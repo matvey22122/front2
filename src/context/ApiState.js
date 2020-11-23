@@ -65,7 +65,6 @@ export const ApiState = ({children}) => {
     } catch (e) {
       console.log(e)
     }
-    return false
   }
 
   return (

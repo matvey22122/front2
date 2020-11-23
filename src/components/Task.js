@@ -36,8 +36,8 @@ const TaskDate = styled.div`
   font-family: Roboto, serif;
   font-style: normal;
   font-weight: bold;
-  font-size: 14px;
-  line-height: 16px;
+  font-size: 10px;
+  line-height: 12px;
   color: #C4C4C4;
 `
 
@@ -58,8 +58,8 @@ const TaskButton = styled.button`
   font-family: Roboto,serif;
   font-style: normal;
   font-weight: bold;
-  font-size: 14px;
-  line-height: 16px;
+  font-size: 12px;
+  line-height: 14px;
   text-align: center;
   
   color: #C3FEDA;

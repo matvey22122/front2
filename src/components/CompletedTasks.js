@@ -1,6 +1,7 @@
 import React, {useContext} from "react";
 import styled from 'styled-components'
 import {ApiContext} from "../context/ApiContext";
+import {adaptiveHeightMobile} from "../mixin";
 
 const CompletedBlock = styled.div`
   position: absolute;
@@ -27,8 +28,12 @@ const CompletedBlock = styled.div`
   
   color: #323232;
   
-  @media(max-height: 900px) or (max-width: 850px) {
-    padding: 0 25px;
+  @media(max-height: 900px), (max-width: 850px) {
+    padding: 0 ${adaptiveHeightMobile(16, 25)};
+    height: ${adaptiveHeightMobile(30, 48)};
+    font-size: ${adaptiveHeightMobile(14, 18)};
+    line-height: ${adaptiveHeightMobile(16, 21)};
+    border-radius: ${adaptiveHeightMobile(9, 13)} 0px 0px ${adaptiveHeightMobile(9, 13)};
   }
 `
 

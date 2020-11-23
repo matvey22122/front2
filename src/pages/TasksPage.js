@@ -1,6 +1,5 @@
 import React, {Fragment, useContext} from 'react'
 import styled from 'styled-components'
-import {Title} from "../components/Title";
 import {Task} from "../components/Task";
 
 import plus_large from '../assets/plus_large.png'
@@ -8,6 +7,20 @@ import plus_small from '../assets/plus_small.png'
 import {CompletedTasks} from "../components/CompletedTasks";
 import {ApiContext} from "../context/ApiContext";
 import {useHistory} from "react-router-dom";
+import {adaptiveHeightMobile} from "../mixin";
+
+const StyledTitle = styled.div`
+  font-family: Roboto,serif;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 48px;
+  line-height: 56px;
+  
+  @media(max-height: 900px), (max-width: 850px) {
+    font-size: ${adaptiveHeightMobile(30, 48)};
+    line-height: ${adaptiveHeightMobile(40, 56)};
+  }
+`
 
 const TasksBlock = styled.div`
   display: flex;
@@ -117,7 +130,7 @@ export const TasksPage = () => {
   return (
     <Fragment>
       <TasksBlock>
-        <Title title={"Tasks"} />
+        <StyledTitle>{"Tasks"}</StyledTitle>
         <Tasks>
           {tasks.map((task, i) => (
             <Task key={i} task={task} index={i} doneTask={deleteTask}/>

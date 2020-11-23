@@ -1,5 +1,6 @@
 import React, {useState} from "react";
 import {ApiContext} from "./ApiContext";
+import {getToday} from "../mixin";
 
 export const ApiState = ({children}) => {
   const [state, setState] = useState([])
@@ -21,13 +22,8 @@ export const ApiState = ({children}) => {
   }
 
   const addTask = async title => {
-    const date = new Date();
-    const d = Intl.DateTimeFormat('en', {day: 'numeric'}).format(date)
-    const m = Intl.DateTimeFormat('en', {month: 'long'}).format(date)
-    const ye = Intl.DateTimeFormat('en', {year: 'numeric'}).format(date)
-
     const task = {
-      title, date: `${d} ${m} ${ye}`
+      title, date: getToday()
     }
 
     try {

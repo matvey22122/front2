@@ -1,12 +1,25 @@
 import React, {Fragment} from 'react'
 import styled from 'styled-components'
-
-import {Title} from "../components/Title";
 import {NewTaskForm} from "../components/NewTaskForm";
 import {useHistory} from "react-router-dom";
+import {adaptiveHeightMobile, adaptiveWidthWeb} from "../mixin";
+
+const StyledTitle = styled.div`
+  font-family: Roboto,serif;
+  font-style: normal;
+  font-weight: bold;
+  
+  @media(min-height: 900px) and (min-width: 850px) {
+    font-size: ${adaptiveWidthWeb(30, 48)};
+  }
+  
+  @media(max-height: 900px), (max-width: 850px) {
+    font-size: ${adaptiveHeightMobile(30, 48)};
+  }
+`
 
 const TitleBlock = styled.div`
-  @media(max-height: 900px), (max-width: 700px) {
+  @media(max-height: 900px), (max-width: 850px) {
     width: 81vw;
     max-width: 400px;
     display: flex;
@@ -24,7 +37,7 @@ const NewTaskBlock = styled.div`
   width: 16vw;
   min-width: 305px;
   
-  @media(max-height: 900px), (max-width: 700px) {
+  @media(max-height: 900px), (max-width: 850px) {
     position: static;
     
     align-items: center;
@@ -35,11 +48,7 @@ const NewTaskBlock = styled.div`
 
 const BackButton = styled.div`
   position: absolute;
-  
-  width: 81px;
-  height: 81px;
-  
-  margin-left: 460px;
+
   top: -8px;
   
   display: flex;
@@ -48,17 +57,20 @@ const BackButton = styled.div`
   
   border: 1px solid #999999;
   box-sizing: border-box;
-  border-radius: 97px;
   
   color: #999999;
   font-weight: lighter;
-  font-size: 40px;
   
-  @media(min-width: 1920px) {
-    margin-left: 24vw;
+  @media(min-height: 900px) and (min-width: 850px) {
+    margin-left: ${adaptiveWidthWeb(350, 480)};
+    border-radius: ${adaptiveWidthWeb(80, 97)};
+    font-size: ${adaptiveWidthWeb(30, 40)};
+    border-radius: ${adaptiveWidthWeb(60, 97)};
+    width: ${adaptiveWidthWeb(55, 81)};
+    height: ${adaptiveWidthWeb(55, 81)};
   }
   
-  @media(max-height: 900px), (max-width: 700px) {
+  @media(max-height: 900px), (max-width: 850px) {
     display: none;
   }
 `
@@ -70,7 +82,7 @@ export const NewTaskPage = () => {
     <Fragment>
       <NewTaskBlock>
         <TitleBlock>
-          <Title title={"New task"}/>
+          <StyledTitle>New task</StyledTitle>
         </TitleBlock>
         <NewTaskForm />
         <BackButton onClick={() => history.goBack()}>&times;</BackButton>

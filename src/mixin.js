@@ -7,11 +7,11 @@ export const adaptiveHeightMobile = (min, full) => {
 }
 
 export const adaptiveWidthWeb = (min, full) => {
-  return `calc(${min}px + ${full - min} * ((100vw - 800px) / (1920 - 800)))`
+  return `calc(${min}px + ${full - min} * ((100vw - 850px) / (1920 - 850)))`
 }
 
 export const adaptiveHeightWeb = (min, full) => {
-  return `calc(${min}px + ${full - min} * ((100vh - 700px) / (1080 - 700)))`
+  return `calc(${min}px + ${full - min} * ((100vh - 900px) / (1080 - 900)))`
 }
 
 export const getToday = () => {

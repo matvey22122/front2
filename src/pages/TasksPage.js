@@ -2,8 +2,6 @@ import React, {Fragment, useContext} from 'react'
 import styled from 'styled-components'
 import {Task} from "../components/Task";
 
-import plus_large from '../assets/plus_large.png'
-import plus_small from '../assets/plus_small.png'
 import {CompletedTasks} from "../components/CompletedTasks";
 import {ApiContext} from "../context/ApiContext";
 import {useHistory} from "react-router-dom";
@@ -27,7 +25,7 @@ const TasksBlock = styled.div`
   align-items: center;
   flex-direction: column;
   
-  margin: 12.7vh auto 0;
+  margin: 12.7vh auto 30px;
   
   @media(max-height: 900px), (max-width: 850px) {
     margin: 7.7vh auto 0;
@@ -67,7 +65,8 @@ const AddButton = styled.button`
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 150px;
+  justify-content: center;
+  min-height: 150px;
   
   background: #F7F7F7;
   border-radius: 9px;
@@ -81,28 +80,29 @@ const AddButton = styled.button`
     display: flex;
     justify-content: center;
     
-    width: 51px;
-    height: 51px;
+    width: ${adaptiveHeightMobile(27, 51)};
+    min-height: auto;
+    height: ${adaptiveHeightMobile(27, 51)};
     
     background: #FFE3D3;
-    border-radius: 25px;
+    border-radius: ${adaptiveHeightMobile(14, 25)};
     border: 0;
   }
 `
 
 const Plus = styled.div`
-  height: 23px;
-  width: 21px;
+  font-family: Roboto,serif;
+  font-style: normal;
+  font-weight: 700;
+  color: #999999;
   
-  background-image: url("${plus_large}");
-  
-  margin-top: 42px;
+  font-size: 40px;
+  line-height: 22px;
   
   @media(max-height: 900px), (max-width: 850px) {
-    margin: 0;  
-    height: 18px;
-    width: 19px;
-    background-image: url("${plus_small}");
+    margin: 0;
+    color: #3C3C3C;
+    font-size: ${adaptiveHeightMobile(22, 40)};
   }
 `
 
@@ -136,7 +136,7 @@ export const TasksPage = () => {
             <Task key={i} task={task} index={i} doneTask={deleteTask}/>
           ))}
           <AddButton onClick={() => goToNewTask()}>
-            <Plus />
+            <Plus>+</Plus>
             <AddButtonTitle>Create new task</AddButtonTitle>
           </AddButton>
         </Tasks>

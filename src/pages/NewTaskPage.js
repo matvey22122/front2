@@ -3,6 +3,7 @@ import styled from 'styled-components'
 
 import {Title} from "../components/Title";
 import {NewTaskForm} from "../components/NewTaskForm";
+import {useHistory} from "react-router-dom";
 
 const TitleBlock = styled.div`
   @media(max-height: 900px), (max-width: 700px) {
@@ -63,6 +64,8 @@ const BackButton = styled.div`
 `
 
 export const NewTaskPage = () => {
+  const history = useHistory()
+
   return (
     <Fragment>
       <NewTaskBlock>
@@ -70,7 +73,7 @@ export const NewTaskPage = () => {
           <Title title={"New task"}/>
         </TitleBlock>
         <NewTaskForm />
-        <BackButton>&times;</BackButton>
+        <BackButton onClick={() => history.goBack()}>&times;</BackButton>
       </NewTaskBlock>
     </Fragment>
   )
